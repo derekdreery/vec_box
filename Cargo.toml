@@ -1,0 +1,13 @@
+[package]
+name = "vec_box"
+version = "1.0.0"
+authors = ["Richard Dodd <richard.o.dodd@gmail.com>"]
+keywords = ["vec", "box", "macro", "trait", "object"]
+license = "ISC/MIT/Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/derekdreery/vec_box"
+homepage = "https://github.com/derekdreery/vec_box"
+documentation = "https://docs.rs/vec_box/1.0.0/vec_box/"
+description = "A single macro to create a vec of boxed elements, for trait objects"
+
+[dependencies]
