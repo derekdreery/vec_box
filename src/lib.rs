@@ -1,4 +1,3 @@
-
 #[macro_export]
 macro_rules! vec_box {
     ($elem:expr; $n:expr) => (vec![Box::new($elem); $n]);
@@ -10,12 +9,18 @@ macro_rules! vec_box {
 mod tests {
     #[test]
     fn macro_list() {
-        assert_eq!(vec![Box::new(1), Box::new(2), Box::new(3)], vec_box![1u8, 2, 3]);
+        assert_eq!(
+            vec![Box::new(1), Box::new(2), Box::new(3)],
+            vec_box![1u8, 2, 3]
+        );
     }
-    
+
     #[test]
     fn macro_list_trailing_comma() {
-        assert_eq!(vec![Box::new(1), Box::new(2), Box::new(3)], vec_box![1u8, 2, 3,]);
+        assert_eq!(
+            vec![Box::new(1), Box::new(2), Box::new(3)],
+            vec_box![1u8, 2, 3,]
+        );
     }
 
     #[test]
@@ -25,7 +30,7 @@ mod tests {
 
     // helpers for trait objects
     struct A {
-        x: u32
+        x: u32,
     }
 
     impl A {
@@ -36,7 +41,7 @@ mod tests {
 
     struct B {
         x: u32,
-        y: u32
+        y: u32,
     }
 
     impl B {
@@ -63,15 +68,8 @@ mod tests {
 
     #[test]
     fn trait_objects() {
-        let v: Vec<Box<dyn C>> = vec_box![
-            A::new(1),
-            B::new(1),
-            A::new(2)
-        ];
+        let v: Vec<Box<dyn C>> = vec_box![A::new(1), B::new(1), A::new(2)];
 
-        assert_eq!(
-            v.iter().fold(0, |acc, ref x| acc + x.get()),
-            5
-        );
+        assert_eq!(v.iter().fold(0, |acc, ref x| acc + x.get()), 5);
     }
 }

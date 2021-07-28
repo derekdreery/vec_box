@@ -2,7 +2,7 @@
 extern crate vec_box;
 
 struct A {
-    x: u32
+    x: u32,
 }
 
 impl A {
@@ -13,7 +13,7 @@ impl A {
 
 struct B {
     x: u32,
-    y: u32
+    y: u32,
 }
 
 impl B {
@@ -39,14 +39,7 @@ impl C for B {
 }
 
 fn main() {
-    let v: Vec<Box<dyn C>> = vec_box![
-        A::new(1),
-        B::new(1),
-        A::new(2)
-    ];
+    let v: Vec<Box<dyn C>> = vec_box![A::new(1), B::new(1), A::new(2)];
 
-    assert_eq!(
-        v.iter().fold(0, |acc, ref x| acc + x.get()),
-        5
-    );
+    assert_eq!(v.iter().fold(0, |acc, ref x| acc + x.get()), 5);
 }
