@@ -1,5 +1,6 @@
 [package]
 name = "vec_box"
+edition =  "2018"
 version = "1.0.0"
 authors = ["Richard Dodd <richard.o.dodd@gmail.com>"]
 keywords = ["vec", "box", "macro", "trait", "object"]
