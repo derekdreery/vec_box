@@ -1,13 +1,9 @@
 
 #[macro_export]
 macro_rules! vec_box {
-    ($elem:expr; $n:expr) => (
-        $crate::vec::from_elem(Box::new($elem), $n)
-    );
-    ($($x:expr),*) => (
-        <[_]>::into_vec(Box::new([$(Box::new($x)),*]))
-    );
-    ($($x:expr,)*) => (vec![$(Box::new($x)),*])
+    ($elem:expr; $n:expr) => (vec![Box::new($elem); $n]);
+    ($($x:expr),*) => (vec![$(Box::new($x)),*]);
+    ($($x:expr,)*) => (vec_box![$($x),*]);
 }
 
 #[cfg(test)]
