@@ -9,12 +9,18 @@ macro_rules! vec_box {
 #[cfg(test)]
 mod tests {
     #[test]
-    fn it_works() {
-        let mut v: Vec<Box<u8>> = Vec::new();
-        v.push(Box::new(1));
-        v.push(Box::new(2));
-        v.push(Box::new(3));
-        assert_eq!(v, vec_box![1u8, 2, 3]);
+    fn macro_list() {
+        assert_eq!(vec![Box::new(1), Box::new(2), Box::new(3)], vec_box![1u8, 2, 3]);
+    }
+    
+    #[test]
+    fn macro_list_trailing_comma() {
+        assert_eq!(vec![Box::new(1), Box::new(2), Box::new(3)], vec_box![1u8, 2, 3,]);
+    }
+
+    #[test]
+    fn macro_expr_count() {
+        assert_eq!(vec![Box::new(1u8); 3], vec_box![1u8; 3]);
     }
 
     // helpers for trait objects
@@ -24,7 +30,7 @@ mod tests {
 
     impl A {
         fn new(x: u32) -> A {
-            A { x: x }
+            A { x }
         }
     }
 
@@ -35,7 +41,7 @@ mod tests {
 
     impl B {
         fn new(x: u32) -> B {
-            B { x: x, y: x }
+            B { x, y: x }
         }
     }
 
@@ -57,7 +63,7 @@ mod tests {
 
     #[test]
     fn trait_objects() {
-        let v: Vec<Box<C>> = vec_box![
+        let v: Vec<Box<dyn C>> = vec_box![
             A::new(1),
             B::new(1),
             A::new(2)

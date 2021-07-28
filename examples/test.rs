@@ -7,7 +7,7 @@ struct A {
 
 impl A {
     fn new(x: u32) -> A {
-        A { x: x }
+        A { x }
     }
 }
 
@@ -18,7 +18,7 @@ struct B {
 
 impl B {
     fn new(x: u32) -> B {
-        B { x: x, y: x }
+        B { x, y: x }
     }
 }
 
@@ -39,7 +39,7 @@ impl C for B {
 }
 
 fn main() {
-    let v: Vec<Box<C>> = vec_box![
+    let v: Vec<Box<dyn C>> = vec_box![
         A::new(1),
         B::new(1),
         A::new(2)
